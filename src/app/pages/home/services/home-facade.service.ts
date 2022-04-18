@@ -1,10 +1,14 @@
-import { ChangeDetectorRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { Observable, tap } from 'rxjs';
 
 import { Speech } from '../../../core/modules/speech';
 
-import { DictionaryService, SentencesService } from '../../../core/services';
+import {
+  DictionaryModel,
+  DictionaryService,
+  SentencesService,
+} from '../../../core/services';
 
 @Injectable()
 export class HomeFacadeService {
@@ -14,7 +18,7 @@ export class HomeFacadeService {
 
   recording$!: Observable<boolean>;
 
-  words$!: Observable<string[]>;
+  words$!: Observable<DictionaryModel[]>;
 
   constructor(
     private readonly speechService: Speech,

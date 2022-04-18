@@ -1,0 +1,17 @@
+<p-splitter
+  [style]="{ height: 'calc(100vh - 250px)', 'margin-top': '1em' }"
+  [panelSizes]="[40, 60]"
+>
+  <ng-template pTemplate>
+    <div class="app-splitter__content">
+      <ng-content select="app-splitter-sentence"></ng-content>
+      <ng-content select="app-splitter-speech"></ng-content>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate>
+    <div class="app-splitter__content">
+      <ng-content select="app-splitter-table"></ng-content>
+    </div>
+  </ng-template>
+</p-splitter>

@@ -2,15 +2,14 @@
   [title]="title"
   [text]="'Recording...'"
   [recording]="(facade.recording$ | async)!"
->
-</app-header>
+></app-header>
 
 <app-actions>
   <app-actions-record
+    (onRecord)="facade.onRecord($event)"
     [recording]="(facade.recording$ | async)!"
     [startRecordingText]="'Start recording'"
     [stopRecordingText]="'Stop recording'"
-    (onRecord)="facade.onRecord($event)"
   ></app-actions-record>
   <app-actions-refresh
     [text]="'Refresh sentence'"
@@ -18,54 +17,15 @@
   ></app-actions-refresh>
 </app-actions>
 
-<p-splitter
-  [style]="{ height: 'calc(100vh - 250px)', 'margin-top': '1em' }"
-  [panelSizes]="[40, 60]"
->
-  <ng-template pTemplate>
-    <div style="width: 100%">
-      <div style="padding: 2em">
-        <h4>Read the text below to practice</h4>
-
-        <p *ngIf="facade.sentence$ | async as text">
-          {{ text }}
-        </p>
-      </div>
-      <p-divider type="dashed">
-        <div class="inline-flex align-items-center">
-          <b>Speech recognition</b>
-        </div>
-      </p-divider>
-      <div style="padding: 2em">
-        {{ (facade.result$ | async)! }}
-      </div>
-    </div>
-  </ng-template>
-
-  <ng-template pTemplate>
-    <div style="width: 100%">
-      <p-table
-        [value]="(facade.words$ | async)!"
-        [scrollable]="true"
-        scrollHeight="379px"
-      >
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Word</th>
-            <th>Phonetic</th>
-            <th>Audio</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-word>
-          <tr>
-            <td>{{ word.word }}</td>
-            <td>{{ word.phonetic }}</td>
-            <td>{{ word.audio }}</td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
-  </ng-template>
-</p-splitter>
+<app-splitter>
+  <app-splitter-sentence
+    [label]="'Read the text below to practice'"
+    [sentence]="(facade.sentence$ | async)!"
+  ></app-splitter-sentence>
+  <app-splitter-speech
+    [speechText]="(facade.result$ | async)!"
+  ></app-splitter-speech>
+  <app-splitter-table [data]="(facade.words$ | async)!"></app-splitter-table>
+</app-splitter>
 
 <app-footer [text]="'Made with ♥ Angular'"></app-footer>

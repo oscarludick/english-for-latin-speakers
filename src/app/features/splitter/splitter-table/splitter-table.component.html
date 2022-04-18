@@ -1,0 +1,20 @@
+<p-table
+  [value]="data"
+  [scrollable]="config.scrollable"
+  [scrollHeight]="config.scrollHeight"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th id="{{ header }}" *ngFor="let header of config.headers">
+        {{ header }}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-word>
+    <tr>
+      <td>{{ word.word }}</td>
+      <td>{{ word.phonetic }}</td>
+      <td>{{ word.audio }}</td>
+    </tr>
+  </ng-template>
+</p-table>
