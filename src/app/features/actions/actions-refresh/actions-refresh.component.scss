@@ -1,0 +1,9 @@
+::ng-deep.app-actions-refresh {
+  & &.__container {
+    margin: 0 0.5em 0.5em 0;
+  }
+
+  .pi .pi-refresh {
+    width: 1.5rem;
+  }
+}

@@ -1,0 +1,9 @@
+::ng-deep.app-recording {
+  & &__circle {
+    width: 1.5rem;
+  }
+
+  & &__circle--red {
+    color: red;
+  }
+}

@@ -1,0 +1,9 @@
+<p-button
+  [disabled]="(timer$ | async) && !(disabled$ | async)"
+  (onClick)="refresh()"
+  class="app-actions-refresh__container"
+>
+  <ng-template pTemplate="content">
+    <i class="pi pi-refresh"></i> {{ text }}
+  </ng-template>
+</p-button>

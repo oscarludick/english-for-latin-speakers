@@ -1,13 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>EnglishForLatinSpeakers</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>EnglishForLatinSpeakers</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script>
+      var SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      var SpeechGrammarList =
+        window.SpeechGrammarList || window.webkitSpeechGrammarList;
+      var SpeechRecognitionEvent =
+        window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
 </html>

@@ -1,0 +1,6 @@
+::ng-deep .app-header {
+  & &__title {
+    margin: 0 1em 0 1em;
+    color: white;
+  }
+}

@@ -1,0 +1,10 @@
+.app-link {
+  &__container {
+    margin: 0 1em 0 1em;
+  }
+  &__href {
+    color: #f1f1f1;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
