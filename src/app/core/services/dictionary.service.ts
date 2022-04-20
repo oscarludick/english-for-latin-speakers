@@ -1,15 +1,32 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, forkJoin, map, Observable, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  forkJoin,
+  map,
+  Observable,
+  switchMap,
+  tap,
+} from 'rxjs';
 
 import { UtilsService } from './utils.service';
 
 import { Api } from '../modules/api';
 
-export interface DictionaryModel {
+export class DictionaryModel {
   word: string;
   phonetic: string;
-  audio: any;
+  phonetics: { audio: string; text: string }[];
+  hasPhonetics: boolean;
+
+  constructor(item: any) {
+    this.word = item.word;
+    this.phonetic = item.phonetic;
+    this.phonetics = item.phonetics.filter(
+      (p: { audio: string }) => p.audio.length > 0
+    );
+    this.hasPhonetics = this.phonetics.length > 0;
+  }
 }
 
 @Injectable()
@@ -19,12 +36,9 @@ export class DictionaryService {
   private tokens$ = new BehaviorSubject<string[]>([]);
 
   words$ = this.tokens$.asObservable().pipe(
-    map((tokens) => this._getWords(tokens)),
+    map((tokens) => this._get(tokens)),
     switchMap((source) => forkJoin(source)),
-    map(
-      (result) =>
-        this._utilsService.uniqueArray(result, 'word') as DictionaryModel[]
-    )
+    map((result) => this._formatResponse(result))
   );
 
   constructor(
@@ -37,12 +51,26 @@ export class DictionaryService {
     this.tokens$.next(tokens);
   }
 
-  private _getWords(tokens: string[]): Observable<DictionaryModel[]>[] {
-    return tokens.map((word) => this._get(word));
+  private _get(tokens: string[]): Observable<DictionaryModel[]>[] {
+    return tokens.map((word) => {
+      const cleaned = word.replace('.', '').toLocaleLowerCase();
+      return this._api.get(`${this.API}/${cleaned}`);
+    });
   }
 
-  private _get(word: string): Observable<any[]> {
-    const cleanWord = word.replace('.', '').toLocaleLowerCase();
-    return this._api.get(`${this.API}/${cleanWord}`);
+  private _formatResponse(words: any[]): DictionaryModel[] {
+    const repeat: string[] = [];
+    const notEmpty = this._utilsService.nonEmptyArray(words).flat();
+
+    let unique: DictionaryModel[] = [];
+
+    notEmpty.forEach((item) => {
+      if (repeat.includes(item.word)) {
+      } else {
+        unique.push(new DictionaryModel(item));
+      }
+    });
+
+    return unique;
   }
 }

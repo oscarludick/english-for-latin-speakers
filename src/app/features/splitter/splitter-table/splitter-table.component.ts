@@ -5,6 +5,8 @@ import {
   Inject,
 } from '@angular/core';
 
+import { DictionaryModel } from '../../../core/services';
+
 import { SplitterTableConfig } from '../models';
 import { APP_SPLITTER_TABLE_CONF } from '../tokens';
 
@@ -19,18 +21,24 @@ import { APP_SPLITTER_TABLE_CONF } from '../tokens';
 })
 export class SplitterTableComponent {
   @Input()
-  data!: {
-    word: string;
-    phonetic: string;
-    audio: any;
-  }[];
+  data!: DictionaryModel[];
 
   config: SplitterTableConfig;
+
+  selected!: DictionaryModel;
+
+  display = false;
 
   constructor(
     @Inject(APP_SPLITTER_TABLE_CONF)
     readonly _config: SplitterTableConfig
   ) {
     this.config = _config;
+  }
+
+  onAudio(word: DictionaryModel | null): boolean {
+    this.selected = word!;
+    this.display = !!word;
+    return false;
   }
 }

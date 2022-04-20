@@ -24,6 +24,8 @@ export class ActionsRefreshComponent {
 
   timer$!: Observable<any>;
 
+  interval$!: Observable<number | null>;
+
   disabled$!: Observable<any>;
 
   @Output()
@@ -31,6 +33,7 @@ export class ActionsRefreshComponent {
 
   constructor(readonly actionsControlsService: ActionsControlsService) {
     this.timer$ = actionsControlsService.timer$;
+    this.interval$ = actionsControlsService.interval$;
     this.disabled$ = actionsControlsService.disabled$;
   }
 

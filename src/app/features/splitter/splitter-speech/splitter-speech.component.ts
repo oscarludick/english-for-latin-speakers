@@ -11,5 +11,8 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 })
 export class SplitterSpeechComponent {
   @Input()
-  speechText!: string;
+  label!: string;
+
+  @Input()
+  speech!: string;
 }

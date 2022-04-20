@@ -1,7 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 
-import { tap } from 'rxjs';
-
 import { HomeFacadeService } from './services';
 
 @Component({
@@ -16,7 +14,5 @@ export class HomeComponent {
   constructor(
     public readonly facade: HomeFacadeService,
     readonly cdr: ChangeDetectorRef
-  ) {
-    this.facade.result$.pipe(tap(() => this.cdr.detectChanges()));
-  }
+  ) {}
 }

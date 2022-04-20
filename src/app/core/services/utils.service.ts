@@ -20,4 +20,8 @@ export class UtilsService {
       ).values(),
     ];
   }
+
+  nonEmptyArray(arr: any[]): any[] {
+    return arr.filter((r: any) => r !== null);
+  }
 }

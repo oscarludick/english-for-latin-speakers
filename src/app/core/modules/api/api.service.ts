@@ -7,7 +7,7 @@ import { Api } from './api.abstract';
 
 import { APP_BASE_URL } from './api-base-url.token';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class ApiService extends Api {
   private _formatError = pipe(
     catchError<any, any>((e) => {
