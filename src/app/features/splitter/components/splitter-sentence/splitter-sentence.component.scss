@@ -1,0 +1,13 @@
+::ng-deep.app-splitter-sentence {
+  & &__container {
+    padding: 2em;
+  }
+  & &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  & &__text {
+    font-style: italic;
+  }
+}

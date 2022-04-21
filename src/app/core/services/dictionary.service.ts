@@ -1,33 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import {
-  BehaviorSubject,
-  forkJoin,
-  map,
-  Observable,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { BehaviorSubject, forkJoin, map, Observable, switchMap } from 'rxjs';
+
+import { Api } from '../../modules/api';
+
+import { Dictionary } from '../models';
 
 import { UtilsService } from './utils.service';
-
-import { Api } from '../modules/api';
-
-export class DictionaryModel {
-  word: string;
-  phonetic: string;
-  phonetics: { audio: string; text: string }[];
-  hasPhonetics: boolean;
-
-  constructor(item: any) {
-    this.word = item.word;
-    this.phonetic = item.phonetic;
-    this.phonetics = item.phonetics.filter(
-      (p: { audio: string }) => p.audio.length > 0
-    );
-    this.hasPhonetics = this.phonetics.length > 0;
-  }
-}
 
 @Injectable()
 export class DictionaryService {
@@ -51,23 +30,44 @@ export class DictionaryService {
     this.tokens$.next(tokens);
   }
 
-  private _get(tokens: string[]): Observable<DictionaryModel[]>[] {
+  private _get(tokens: string[]): Observable<Dictionary[]>[] {
     return tokens.map((word) => {
-      const cleaned = word.replace('.', '').toLocaleLowerCase();
+      const cleaned = this._utilsService.clean(word);
       return this._api.get(`${this.API}/${cleaned}`);
     });
   }
 
-  private _formatResponse(words: any[]): DictionaryModel[] {
+  private _formatResponse(words: any[]): Dictionary[] {
+    const response: Dictionary[] = this._utilsService
+      .filterArray(words, null)
+      .flat();
+
     const repeat: string[] = [];
-    const notEmpty = this._utilsService.nonEmptyArray(words).flat();
+    const unique: Dictionary[] = [];
 
-    let unique: DictionaryModel[] = [];
+    const updateUniqueItems = (item: Dictionary) => {
+      unique.push(new Dictionary(item));
+      repeat.push(item.word);
+    };
 
-    notEmpty.forEach((item) => {
-      if (repeat.includes(item.word)) {
+    const mergeItems = (item: Dictionary, currentItem: Dictionary) => {
+      return new Dictionary({
+        ...item,
+        phonetic: item.phonetic ? item.phonetic : currentItem.phonetic,
+        phonetics: [...item.phonetics, ...currentItem.phonetics],
+        meanings: [...item.meanings, ...currentItem.meanings],
+        sourceUrls: [...item.sourceUrls, ...currentItem.sourceUrls],
+      });
+    };
+
+    response.forEach((currentItem) => {
+      if (repeat.includes(currentItem.word)) {
+        const index = this._utilsService.findIndex(unique, 'word', currentItem);
+        if (index !== -1) {
+          unique[index] = mergeItems(unique[index], currentItem);
+        }
       } else {
-        unique.push(new DictionaryModel(item));
+        updateUniqueItems(currentItem);
       }
     });
 

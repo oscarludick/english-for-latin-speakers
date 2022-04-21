@@ -3,25 +3,11 @@ import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 
 import { APP_SENTENCES_MAX } from '../tokens';
 
-import { Api } from '../modules/api';
+import { Api } from '../../modules/api';
+
+import { Sentence, SentencesResponse } from '../models';
 
 import { UtilsService } from './utils.service';
-
-export class SentencesResponse {
-  data!: Sentence[];
-
-  constructor(response: { data: any[] }) {
-    this.data = response.data.map((sentence) => new Sentence(sentence));
-  }
-}
-
-export class Sentence {
-  sentence!: string;
-
-  constructor(sentence: { sentence: string }) {
-    this.sentence = sentence.sentence;
-  }
-}
 
 @Injectable()
 export class SentencesService {

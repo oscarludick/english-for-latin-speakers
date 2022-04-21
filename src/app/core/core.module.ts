@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import { ApiModule } from './modules/api';
-import { SpeechModule } from './modules/speech';
+import { ApiModule } from '../modules/api';
+import { SpeechModule } from '../modules/speech';
 
 import { APP_SENTENCES_MAX } from './tokens';
 

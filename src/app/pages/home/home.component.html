@@ -1,39 +1,11 @@
-<app-header
-  [title]="title"
-  [text]="'Recording...'"
-  [recording]="(facade.recording$ | async)!"
-></app-header>
+<app-header-default></app-header-default>
 
-<div style="padding-left: 15px; padding-right: 15px">
-  <app-actions>
-    <app-actions-record
-      (onRecord)="facade.onRecord($event)"
-      [recording]="(facade.recording$ | async)!"
-      [startRecordingText]="'Start recording'"
-      [stopRecordingText]="'Stop recording'"
-    ></app-actions-record>
-    <app-actions-refresh
-      [text]="'Refresh sentence'"
-      (onRefresh)="facade.onRefresh()"
-    ></app-actions-refresh>
-  </app-actions>
-  <app-splitter>
-    <app-splitter-sentence
-      [label]="'Read the text below to practice'"
-      [sentence]="(facade.sentence$ | async)!"
-    ></app-splitter-sentence>
-    <app-splitter-speech
-      [label]="'Speech recognition'"
-      [speech]="
-        (facade.result$ | async)?.result! ||
-        'Press the Start recording button to continue...'
-      "
-    ></app-splitter-speech>
-    <app-splitter-table [data]="(facade.words$ | async)!"></app-splitter-table>
-  </app-splitter>
+<div class="app-home__container">
+  <app-actions-default> </app-actions-default>
+  <app-splitter> </app-splitter>
   <div>
-    <p>Your current accuracy is of: {{ facade.accuracy$ | async | percent }}</p>
+    <p>Your current accuracy is: {{ facade.accuracy$ | async | percent }}</p>
   </div>
 </div>
 
-<app-footer [text]="'Made with ♥ Angular'"></app-footer>
+<app-footer-default></app-footer-default>

@@ -1,0 +1,20 @@
+<ng-container
+  [ngTemplateOutlet]="(recording$ | async)! ? stop : start"
+></ng-container>
+
+<ng-template #start>
+  <p-button class="app-actions-record__button" (onClick)="onRecord(false)">
+    <ng-template pTemplate="content">
+      <i class="pi pi-play app-actions-record__icon"></i>
+      {{ startRecordingText }}
+    </ng-template>
+  </p-button>
+</ng-template>
+<ng-template #stop>
+  <p-button class="app-actions-record__button" (onClick)="onRecord(true)">
+    <ng-template pTemplate="content">
+      <i class="pi pi-pause app-actions-record__icon"></i>
+      {{ stopRecordingText }}
+    </ng-template>
+  </p-button>
+</ng-template>

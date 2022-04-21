@@ -1,0 +1,19 @@
+<ng-container *ngIf="sentence$ | async as sentence">
+  <div>
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-cog"
+      class="p-button-rounded p-button-secondary p-button-text"
+    ></button>
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-volume-up"
+      class="p-button-rounded p-button-secondary p-button-text"
+      (click)="onPlayAudio(sentence)"
+    ></button>
+  </div>
+</ng-container>

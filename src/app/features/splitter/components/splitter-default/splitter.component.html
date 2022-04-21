@@ -1,0 +1,26 @@
+<p-splitter
+  [style]="{ height: 'calc(100vh - 250px)', 'margin-top': '1em' }"
+  [panelSizes]="[40, 60]"
+>
+  <ng-template pTemplate>
+    <div class="app-splitter__content">
+      <app-splitter-sentence
+        [label]="'Read the text below to practice'"
+        [sentence]="(sentence$ | async)!"
+      ></app-splitter-sentence>
+      <app-splitter-speech
+        [label]="'Speech recognition'"
+        [speech]="
+          (result$ | async)?.result! ||
+          'Press the Start recording button to continue...'
+        "
+      ></app-splitter-speech>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate>
+    <div class="app-splitter__content">
+      <app-splitter-table [data]="(words$ | async)!"></app-splitter-table>
+    </div>
+  </ng-template>
+</p-splitter>

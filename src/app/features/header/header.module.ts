@@ -10,7 +10,7 @@ import { HEADER_LINKS } from './constants';
 
 import { APP_HEADER_LINKS } from './tokens';
 
-import { HeaderComponent } from './header.component';
+import { HeaderComponent } from './components';
 
 @NgModule({
   imports: [CommonModule, ToolbarModule, AppRecordingModule, AppLinkModule],

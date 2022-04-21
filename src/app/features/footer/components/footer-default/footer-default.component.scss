@@ -1,0 +1,10 @@
+::ng-deep.app-footer-default {
+  & &__container {
+    padding: 2px 3em 2px 3em;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

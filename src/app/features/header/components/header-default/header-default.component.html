@@ -1,0 +1,19 @@
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <span class="app-header__title">
+      {{ "english-for-latin-speakers" | titlecase }}
+    </span>
+
+    <app-link
+      *ngFor="let link of headerLinks"
+      [text]="link.text"
+      [url]="link.url"
+    ></app-link>
+  </div>
+  <div class="p-toolbar-group-right">
+    <app-recording
+      [text]="'Recording...'"
+      [isRecording]="(recording$ | async)!"
+    ></app-recording>
+  </div>
+</p-toolbar>

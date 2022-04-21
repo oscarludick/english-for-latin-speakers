@@ -1,0 +1,38 @@
+<p-table
+  [value]="data"
+  [scrollable]="config.scrollable"
+  [scrollHeight]="config.scrollHeight"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th id="{{ header }}" *ngFor="let header of config.headers">
+        {{ header }}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-word>
+    <tr>
+      <td>{{ word.word }}</td>
+      <td>{{ word.phonetic }}</td>
+      <td>
+        <ng-container *ngIf="word.hasPhonetics">
+          <a
+            class="app-splitter-table__audio"
+            (click)="onAudio(word)"
+            href="javascript::void(0)"
+            >Listen</a
+          >
+        </ng-container>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<ng-container *ngIf="selected">
+  <app-splitter-table-modal
+    [display]="display"
+    [title]="selected.word"
+    [phonetics]="selected.phonetics"
+    (onHide)="onAudio(null)"
+  ></app-splitter-table-modal>
+</ng-container>
