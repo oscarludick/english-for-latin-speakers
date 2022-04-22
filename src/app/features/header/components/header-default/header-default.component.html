@@ -1,18 +1,18 @@
 <p-toolbar>
   <div class="p-toolbar-group-left">
-    <span class="app-header__title">
-      {{ "english-for-latin-speakers" | titlecase }}
-    </span>
-
+    <app-title [title]="textTemplate.title"></app-title>
     <app-link
-      *ngFor="let link of headerLinks"
-      [text]="link.text"
-      [url]="link.url"
+      [text]="textTemplate['dictionaryapi.dev']"
+      [url]="'https://dictionaryapi.dev'"
+    ></app-link>
+    <app-link
+      [text]="textTemplate['randomwordgenerator.com']"
+      [url]="'https://randomwordgenerator.com'"
     ></app-link>
   </div>
   <div class="p-toolbar-group-right">
     <app-recording
-      [text]="'Recording...'"
+      [text]="textTemplate.recording"
       [isRecording]="(recording$ | async)!"
     ></app-recording>
   </div>

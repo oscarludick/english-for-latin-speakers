@@ -16,7 +16,7 @@ export class SentencesService {
   );
 
   private _sentencesApi$: Observable<Sentence[]> = this._api
-    .get<SentencesResponse>('sentences.json')
+    .get<SentencesResponse>('/data/sentences.json')
     .pipe(map((response) => new SentencesResponse(response).data));
 
   sentence$: Observable<string> = combineLatest([

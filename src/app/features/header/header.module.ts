@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { ToolbarModule } from 'primeng/toolbar';
 
-import { AppLinkModule } from '../../shared/app-link';
-import { AppRecordingModule } from '../../shared/app-recording';
+import { AppLinkModule } from '@shared/app-link';
+import { AppTitleModule } from '@shared/app-title';
+import { AppRecordingModule } from '@shared/app-recording';
 
 import { HEADER_LINKS } from './constants';
 
@@ -13,7 +14,14 @@ import { APP_HEADER_LINKS } from './tokens';
 import { HeaderComponent } from './components';
 
 @NgModule({
-  imports: [CommonModule, ToolbarModule, AppRecordingModule, AppLinkModule],
+  imports: [
+    CommonModule,
+    ToolbarModule,
+
+    AppTitleModule,
+    AppRecordingModule,
+    AppLinkModule,
+  ],
   declarations: [HeaderComponent],
   exports: [HeaderComponent],
   providers: [

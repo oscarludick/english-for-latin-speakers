@@ -1,0 +1,24 @@
+{
+  "app": {
+    "header": {
+      "title": "English for latin speakers",
+      "dictionaryapi.dev": "About Free Dictionary API",
+      "randomwordgenerator.com": "About Random Sentence Generator",
+      "recording": "Recording..."
+    },
+    "actions": {
+      "recording": {
+        "start": "Start recording",
+        "stop": "Stop recording"
+      },
+      "refresh": {
+        "active": "Refresh sentence",
+        "inactive": "Refresh in "
+      }
+    },
+    "footer": {
+      "title": "Made with ♥ Angular",
+      "copy": "© Oscar Ludick"
+    }
+  }
+}

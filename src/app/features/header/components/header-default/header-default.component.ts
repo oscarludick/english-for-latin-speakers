@@ -7,9 +7,10 @@ import {
 
 import { Speech } from '@modules/speech';
 
-import { APP_HEADER_LINKS } from '../../tokens';
+import { TextTemplate } from '@core/interfaces';
+import { APP_TEXT_TEMPLATE } from '@core/tokens';
 
-import { HeaderLink } from '../../interfaces';
+type AppHeader = TextTemplate['app']['header'];
 
 @Component({
   selector: 'app-header-default',
@@ -22,19 +23,14 @@ import { HeaderLink } from '../../interfaces';
 })
 export class HeaderComponent {
   @Input()
-  title!: string;
-
-  @Input()
-  text!: string;
+  textTemplate!: AppHeader;
 
   recording$ = this._speechService.recording$;
 
-  headerLinks: HeaderLink[];
-
   constructor(
-    @Inject(APP_HEADER_LINKS) private readonly _headerLinks: HeaderLink[],
+    @Inject(APP_TEXT_TEMPLATE) private readonly _textTemplate: TextTemplate,
     private readonly _speechService: Speech
   ) {
-    this.headerLinks = this._headerLinks;
+    this.textTemplate = this._textTemplate.app.header;
   }
 }
