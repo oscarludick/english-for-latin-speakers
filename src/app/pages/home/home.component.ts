@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 
-import { HomeFacadeService } from './services';
+import { HomeFacadeService } from './home-facade.service';
 
 @Component({
   selector: 'app-home',

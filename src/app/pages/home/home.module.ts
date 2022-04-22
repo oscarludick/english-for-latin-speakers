@@ -20,12 +20,12 @@ import { HomeComponent } from './home.component';
     SSplitterModule.forRoot({
       table: {
         headers: ['Word', 'Phonetic', 'Audio'],
-        scrollHeight: '379px',
+        scrollHeight: 'calc(100vh - 253px)',
         scrollable: true,
       },
     }),
     ActionsModule.forRoot({
-      refreshTimer: 20 * 1000,
+      refreshTimer: 1 * 1000,
     }),
   ],
   declarations: [HomeComponent],

@@ -3,7 +3,7 @@
     <h4>{{ label }}</h4>
     <app-splitter-sentence-actions></app-splitter-sentence-actions>
   </div>
-  <p class="app-splitter-sentence__text" *ngIf="sentence">
-    {{ sentence }}
-  </p>
+  <div class="app-splitter-sentence__text">
+    <ng-container *tokenize="sentence"></ng-container>
+  </div>
 </div>

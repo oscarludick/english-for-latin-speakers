@@ -7,16 +7,20 @@ import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { ListboxModule } from 'primeng/listbox';
 import { SplitterModule } from 'primeng/splitter';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 import { AppAudioModule } from '@shared/app-audio';
 
 import {
+  HighlightDirective,
   SplitterComponent,
   SplitterSentenceActionsComponent,
   SplitterSentenceComponent,
   SplitterSpeechComponent,
   SplitterTableComponent,
   SplitterTableModalComponent,
+  TokenizeDirective,
+  WordComponent,
 } from './components';
 
 import { SplitterTableConfig } from './interfaces';
@@ -32,6 +36,8 @@ import { APP_SPLITTER_TABLE_CONF } from './tokens';
     DividerModule,
     ButtonModule,
     ListboxModule,
+    OverlayPanelModule,
+
     AppAudioModule,
   ],
   declarations: [
@@ -41,6 +47,10 @@ import { APP_SPLITTER_TABLE_CONF } from './tokens';
     SplitterSpeechComponent,
     SplitterTableComponent,
     SplitterTableModalComponent,
+
+    TokenizeDirective,
+    WordComponent,
+    HighlightDirective,
   ],
   exports: [SplitterComponent],
 })

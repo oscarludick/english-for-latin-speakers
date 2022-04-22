@@ -3,8 +3,8 @@
 <div class="app-home__container">
   <app-actions-default> </app-actions-default>
   <app-splitter> </app-splitter>
-  <div>
-    <p>Your current accuracy is: {{ facade.accuracy$ | async | percent }}</p>
+  <div class="customer-badge status-renewal">
+    <p>{{ facade.results$ | async }}</p>
   </div>
 </div>
 

@@ -9,5 +9,7 @@
   }
   & &__text {
     font-style: italic;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
