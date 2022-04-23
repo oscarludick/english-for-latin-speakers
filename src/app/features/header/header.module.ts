@@ -7,11 +7,7 @@ import { AppLinkModule } from '@shared/app-link';
 import { AppTitleModule } from '@shared/app-title';
 import { AppRecordingModule } from '@shared/app-recording';
 
-import { HEADER_LINKS } from './constants';
-
-import { APP_HEADER_LINKS } from './tokens';
-
-import { HeaderComponent } from './components';
+import { HeaderComponent } from '@features/header/components';
 
 @NgModule({
   imports: [
@@ -24,11 +20,5 @@ import { HeaderComponent } from './components';
   ],
   declarations: [HeaderComponent],
   exports: [HeaderComponent],
-  providers: [
-    {
-      provide: APP_HEADER_LINKS,
-      useValue: HEADER_LINKS,
-    },
-  ],
 })
 export class HeaderModule {}

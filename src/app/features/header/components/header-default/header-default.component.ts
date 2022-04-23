@@ -1,9 +1,4 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  Input,
-  Inject,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
 
 import { Speech } from '@modules/speech';
 
@@ -22,7 +17,6 @@ type AppHeader = TextTemplate['app']['header'];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  @Input()
   textTemplate!: AppHeader;
 
   recording$ = this._speechService.recording$;

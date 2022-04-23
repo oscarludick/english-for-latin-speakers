@@ -10,7 +10,7 @@ import {
   timer,
 } from 'rxjs';
 
-import { APP_ACTIONS_REFRESH } from '../tokens';
+import { APP_ACTIONS_REFRESH } from '@features/actions/tokens';
 
 @Injectable()
 export class ActionsRefreshService {

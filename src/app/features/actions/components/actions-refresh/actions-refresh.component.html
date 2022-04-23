@@ -6,10 +6,10 @@
   <ng-template pTemplate="content">
     <i class="pi pi-refresh app-actions-refresh__icon"></i>
     <ng-container *ngIf="interval$ | async as interval; else label">
-      {{ "Request again in " + interval }}
+      {{ inactiveRefreshText + interval }}
     </ng-container>
     <ng-template #label>
-      {{ text }}
+      {{ activeRefreshText }}
     </ng-template>
   </ng-template>
 </p-button>

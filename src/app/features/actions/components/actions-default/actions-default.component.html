@@ -1,7 +1,10 @@
 <div class="app-actions-default__container">
   <app-actions-record
-    [startRecordingText]="'Start recording'"
-    [stopRecordingText]="'Stop recording'"
+    [startRecordingText]="textTemplate.recording.start"
+    [stopRecordingText]="textTemplate.recording.stop"
   ></app-actions-record>
-  <app-actions-refresh [text]="'Refresh sentence'"></app-actions-refresh>
+  <app-actions-refresh
+    [activeRefreshText]="textTemplate.refresh.active"
+    [inactiveRefreshText]="textTemplate.refresh.inactive"
+  ></app-actions-refresh>
 </div>

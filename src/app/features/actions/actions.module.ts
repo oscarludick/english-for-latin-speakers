@@ -4,13 +4,13 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { SplitterModule } from 'primeng/splitter';
 
-import { APP_ACTIONS_REFRESH } from './tokens';
+import { APP_ACTIONS_REFRESH } from '@features/actions/tokens';
 
 import {
   ActionsDefaultComponent,
   ActionsRecordComponent,
   ActionsRefreshComponent,
-} from './components';
+} from '@features/actions/components';
 
 @NgModule({
   imports: [CommonModule, ButtonModule, SplitterModule],

@@ -18,7 +18,10 @@ import { ActionsRefreshService } from '@features/actions/services';
 })
 export class ActionsRefreshComponent {
   @Input()
-  text!: string;
+  activeRefreshText!: string;
+
+  @Input()
+  inactiveRefreshText!: string;
 
   timer$!: Observable<any>;
 
